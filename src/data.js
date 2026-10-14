@@ -3,7 +3,7 @@ const A = (f) => `./assets/${f}`;
 
 export const profile = {
   name: "Harshad Khatale",
-  role: "AI & ML Engineer · Full-Stack Developer · Freelancer",
+  role: "AI & ML Engineer · Full-Stack Developer · Cloud Learner",
   tagline: "I turn real problems into live products: hostel portals for 90+ students, RAG-powered AI tools, and websites for real businesses.",
   location: "Vishrambaug, Sangli, Maharashtra",
   email: "khataleharshad26@gmail.com",
