@@ -264,7 +264,8 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .cert-body p { color: var(--muted); font-size: 0.9rem; }
 .cert-body a { font-weight: 600; font-size: 0.9rem; margin-top: 6px; }
 .kind { font: 500 0.72rem var(--mono); text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold); }
-.cert-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 18px; }
+.cert-list { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 18px; }
+@media (max-width: 960px) { .cert-list { grid-template-columns: repeat(2, 1fr); } }
 .cert-list li { padding: 18px; border-radius: 14px; border: 1px dashed var(--line); background: var(--surface); display: grid; gap: 4px; }
 .cert-list h3 { font-size: 1.1rem; }
 .cert-list p { color: var(--muted); font-size: 0.9rem; }

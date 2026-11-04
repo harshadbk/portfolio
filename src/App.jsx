@@ -186,7 +186,6 @@ function Experience({ onOpen }) {
 }
 
 function Freelance() {
-  const cs = freelance.caseStudy;
   return (
     <Section id="freelance" eyebrow="Freelance · Upwork" title="Working with real clients" intro={freelance.intro}>
       <div className="links"><LinkPill label="My Upwork profile" url={freelance.upwork} primary /></div>
@@ -205,20 +204,22 @@ function Freelance() {
         ))}
       </ol>
 
-      <article className="case">
-        <div className="case-text">
-          <p className="eyebrow">Client case study</p>
-          <h3>{cs.client}</h3>
-          <p className="muted">{cs.place} · Freelance project</p>
-          <p className="goal"><strong>Goal:</strong> {cs.goal}</p>
-          <ul className="bullets">{cs.features.map((f) => <li key={f}>{f}</li>)}</ul>
-          <div className="links">
-            <LinkPill label="Visit live site" url={cs.live} primary />
-            <LinkPill label="GitHub repo" url={cs.repo} />
+      {freelance.clients.map((cs, i) => (
+        <article key={cs.client} className="case">
+          <div className="case-text">
+            <p className="eyebrow">Client case study {i + 1}</p>
+            <h3>{cs.client}</h3>
+            <p className="muted">{cs.place} · Freelance project</p>
+            <p className="goal"><strong>Goal:</strong> {cs.goal}</p>
+            <ul className="bullets">{cs.features.map((f) => <li key={f}>{f}</li>)}</ul>
+            <div className="links">
+              <LinkPill label="Visit live site" url={cs.live} primary />
+              {cs.repo && <LinkPill label="GitHub repo" url={cs.repo} />}
+            </div>
           </div>
-        </div>
-        <BrowserFrame src={cs.image} url={host(cs.live)} alt="Purva Eye Care Center website, full page" tall />
-      </article>
+          <BrowserFrame src={cs.image} url={host(cs.live)} alt={`${cs.client} website`} tall={cs.tall} />
+        </article>
+      ))}
     </Section>
   );
 }
@@ -301,8 +302,8 @@ function Certificates({ onOpen }) {
           <li key={c.title}>
             <span className="kind">{c.kind}</span>
             <h3>{c.title}</h3>
-            <p>{c.issuer}</p>
-            {c.url ? <a href={c.url} {...ext}>View course ↗</a> : <span className="muted">Completed</span>}
+            {c.issuer && <p>{c.issuer}</p>}
+            {c.url ? <a href={c.url} {...ext}>View certificate ↗</a> : <span className="muted">Completed</span>}
           </li>
         ))}
       </ul>
@@ -364,7 +365,7 @@ function Lightbox({ item, onClose }) {
         <figure>
           <img src={item.image} alt={item.title} />
           <figcaption>
-            <span><strong>{item.title}</strong> · {item.issuer}</span>
+            <span><strong>{item.title}</strong>{item.issuer && ` · ${item.issuer}`}</span>
             <span className="lb-actions">
               {item.url && <a href={item.url} {...ext}>Open original ↗</a>}
               <button className="btn" onClick={onClose}>Close</button>
